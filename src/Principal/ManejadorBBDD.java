@@ -26,10 +26,9 @@ public class ManejadorBBDD {
 		}
 
 	}
-	
+
 	public void cerrarConexion() {
-		
-		
+
 		try {
 			con.close();
 		} catch (SQLException e) {
@@ -39,18 +38,18 @@ public class ManejadorBBDD {
 	}
 
 	public void getEmpleados() throws SQLException {
-		
-			 System.out.println("El listado:");
-	         Statement stmt = con.createStatement();
-	         ResultSet rs = stmt.executeQuery("SELECT * FROM empleados");
-	      
-	         while (rs.next()) {
-	            System.out.print("ID: " + rs.getInt("id"));
-	            System.out.print(", Edad: " + rs.getInt("edad"));
-	            System.out.print(", Nombre: " + rs.getString("nombre"));
-	            System.out.println(", Apellidos: " + rs.getString("apellidos"));
-	         }
-    }
+
+		System.out.println("El listado:");
+		Statement stmt = con.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM empleados");
+
+		while (rs.next()) {
+			System.out.print("ID: " + rs.getInt("id"));
+			System.out.print(", Edad: " + rs.getInt("edad"));
+			System.out.print(", Nombre: " + rs.getString("nombre"));
+			System.out.println(", Apellidos: " + rs.getString("apellidos"));
+		}
+	}
 
 	public void crearTablaEmpleados() throws SQLException {
 
@@ -63,7 +62,7 @@ public class ManejadorBBDD {
 		System.out.println("Tabla creada");
 
 	}
-	
+
 	public void borrarTablaEmpleados() throws SQLException {
 
 		Statement stmt = con.createStatement();
@@ -74,42 +73,40 @@ public class ManejadorBBDD {
 		System.out.println("Tabla borrada");
 
 	}
-	
-	
+
 	public void insertarDatosEmpleados() throws SQLException {
-		
-		
-		
+
 		for (int i = 0; i < 100; i++) {
 			String sql = "INSERT INTO EMPLEADOS (nombre, apellidos, edad) VALUES (?,?,?)";
 			PreparedStatement preparedStatement = con.prepareStatement(sql);
-			preparedStatement.setString(1,cogerNombreAleatorio());
-			preparedStatement.setString(2,cogerApellidosAleatorio());
-			preparedStatement.setInt(3,((new Random().nextInt(60))));
+			preparedStatement.setString(1, cogerNombreAleatorio());
+			preparedStatement.setString(2, cogerApellidosAleatorio());
+			preparedStatement.setInt(3, ((new Random().nextInt(60))));
 			preparedStatement.executeUpdate();
 
 		}
-		
+
 		System.out.println("Datos insertados");
-		
+
 	}
-	
-	
+
 	private String cogerNombreAleatorio() {
-		String nombres[]= {"Antonio","Manuel","José","Francisco","David","Juan","Javier","José Antonio","Daniel","José Luis","María Carmen","María","Carmen","Ana María","Josefa","María Pilar","Isabel","Laura","María Dolores","María Teresa"};
-		
-		Random r=new Random();
-		
-		
-		
+		String nombres[] = { "Antonio", "Manuel", "José", "Francisco", "David", "Juan", "Javier", "José Antonio",
+				"Daniel", "José Luis", "María Carmen", "María", "Carmen", "Ana María", "Josefa", "María Pilar",
+				"Isabel", "Laura", "María Dolores", "María Teresa" };
+
+		Random r = new Random();
+
 		return nombres[r.nextInt(nombres.length)];
-		
+
 	}
-	
+
 	private String cogerApellidosAleatorio() {
-		String apellidos[]= {"González","Rodríguez","Fernández","Díaz","Pérez","Gómez","Lucero","Sosa","Quiroga","Martínez","López","García","Muñoz","Sánchez","Flores","Romero","Cruz","Benítez","Ramírez","Silva","Ruiz"};
-		Random r=new Random();
-		
-		return apellidos[r.nextInt(apellidos.length)]+" "+apellidos[r.nextInt(apellidos.length)];
+		String apellidos[] = { "González", "Rodríguez", "Fernández", "Díaz", "Pérez", "Gómez", "Lucero", "Sosa",
+				"Quiroga", "Martínez", "López", "García", "Muñoz", "Sánchez", "Flores", "Romero", "Cruz", "Benítez",
+				"Ramírez", "Silva", "Ruiz" };
+		Random r = new Random();
+
+		return apellidos[r.nextInt(apellidos.length)] + " " + apellidos[r.nextInt(apellidos.length)];
 	}
 }
