@@ -9,16 +9,16 @@ public class Principal {
 
 		try {
 			mysql.establecerConexion();
+			// ya no hace falta borrar, crear ni insertar.
 			// mysql.borrarTablaEmpleados();
-			mysql.crearTablaEmpleados();
-			mysql.insertarDatosEmpleados();
-			mysql.getEmpleados();
+			// mysql.crearTablaEmpleados();
+			// mysql.insertarDatosEmpleados();
+			// mysql.getEmpleados();
+			mysql.getEmpleadosEdad("19");
+
 			mysql.cerrarConexion();
-
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 		}
-
 	}
 }

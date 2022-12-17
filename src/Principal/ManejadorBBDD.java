@@ -20,7 +20,6 @@ public class ManejadorBBDD {
 		try {
 			con = DriverManager.getConnection(DB_URL, USER, PASS);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("No se puede establecer conexión");
 		}
@@ -32,7 +31,6 @@ public class ManejadorBBDD {
 		try {
 			con.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -42,6 +40,20 @@ public class ManejadorBBDD {
 		System.out.println("El listado:");
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery("SELECT * FROM empleados");
+
+		while (rs.next()) {
+			System.out.print("ID: " + rs.getInt("id"));
+			System.out.print(", Edad: " + rs.getInt("edad"));
+			System.out.print(", Nombre: " + rs.getString("nombre"));
+			System.out.println(", Apellidos: " + rs.getString("apellidos"));
+		}
+	}
+
+	public void getEmpleadosEdad(String edad) throws SQLException {
+
+		System.out.println("El listado:");
+		Statement stmt = con.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM empleados WHERE edad=".concat(edad));
 
 		while (rs.next()) {
 			System.out.print("ID: " + rs.getInt("id"));
