@@ -9,7 +9,7 @@ public class Principal {
 
 		try {
 			mysql.establecerConexion();
-			mysql.borrarTablaEmpleados();
+			// mysql.borrarTablaEmpleados();
 			mysql.crearTablaEmpleados();
 			mysql.insertarDatosEmpleados();
 			mysql.getEmpleados();
